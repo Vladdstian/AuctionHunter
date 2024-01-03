@@ -19,7 +19,7 @@ public class AddressEntity {
     private String country;
     private String province;
     private String city;
-    @Column(name = "address")
+    @Column(name = "local_address")
     private String address;
     @Column(name = "post_code")
     private String postCode;
