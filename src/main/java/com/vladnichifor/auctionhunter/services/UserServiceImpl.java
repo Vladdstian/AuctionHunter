@@ -2,13 +2,13 @@ package com.vladnichifor.auctionhunter.services;
 
 import com.vladnichifor.auctionhunter.entities.UserEntity;
 import com.vladnichifor.auctionhunter.exceptions.EmailAlreadyExistsException;
-import com.vladnichifor.auctionhunter.exceptions.EntityNotFoundException;
 import com.vladnichifor.auctionhunter.mappers.UserMapper;
 import com.vladnichifor.auctionhunter.models.User;
 import com.vladnichifor.auctionhunter.repositories.UserRepository;
 import com.vladnichifor.auctionhunter.utils.AccountRole;
 import com.vladnichifor.auctionhunter.utils.AccountStatus;
 import com.vladnichifor.auctionhunter.utils.AccountType;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
