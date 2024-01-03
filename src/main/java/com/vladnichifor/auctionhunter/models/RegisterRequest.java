@@ -1,4 +1,4 @@
-package com.vladnichifor.auctionhunter.security;
+package com.vladnichifor.auctionhunter.models;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

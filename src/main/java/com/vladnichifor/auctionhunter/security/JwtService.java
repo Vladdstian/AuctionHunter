@@ -1,4 +1,4 @@
-package com.vladnichifor.auctionhunter.services;
+package com.vladnichifor.auctionhunter.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

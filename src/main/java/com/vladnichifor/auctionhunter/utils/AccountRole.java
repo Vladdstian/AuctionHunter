@@ -1,2 +1,6 @@
-package com.vladnichifor.auctionhunter.utils;public enum AccountRole {
+package com.vladnichifor.auctionhunter.utils;
+
+public enum AccountRole {
+    USER,
+    ADMIN
 }

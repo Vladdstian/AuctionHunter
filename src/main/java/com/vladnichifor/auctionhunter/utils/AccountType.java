@@ -1,2 +1,9 @@
-package com.vladnichifor.auctionhunter.utils;public class AccountType {
+package com.vladnichifor.auctionhunter.utils;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public enum AccountType {
+    NORMAL,
+    PREMIUM
 }

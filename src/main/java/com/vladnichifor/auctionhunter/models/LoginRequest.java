@@ -1,4 +1,4 @@
-package com.vladnichifor.auctionhunter.security;
+package com.vladnichifor.auctionhunter.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class LoginRequest {
     private String email;
     private String password;
 }

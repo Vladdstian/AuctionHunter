@@ -1,9 +1,6 @@
-package com.vladnichifor.auctionhunter.models;
+package com.vladnichifor.auctionhunter.security;
 
 import com.vladnichifor.auctionhunter.entities.UserEntity;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,13 +10,11 @@ import java.util.List;
 
 public record AuthUser(UserEntity userEntity) implements UserDetails {
 
-    public AuthUser(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userEntity.getAccountRole().name()));
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + userEntity.getAccountRole().name());
+        return List.of(authority);
     }
 
     @Override

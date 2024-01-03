@@ -1,7 +1,12 @@
-package com.vladnichifor.auctionhunter.security;
+package com.vladnichifor.auctionhunter.services;
 
 import com.vladnichifor.auctionhunter.entities.UserEntity;
+import com.vladnichifor.auctionhunter.models.LoginRequest;
+import com.vladnichifor.auctionhunter.models.AuthenticationResponse;
+import com.vladnichifor.auctionhunter.models.RegisterRequest;
 import com.vladnichifor.auctionhunter.repositories.UserRepository;
+import com.vladnichifor.auctionhunter.security.AuthUser;
+import com.vladnichifor.auctionhunter.security.JwtService;
 import com.vladnichifor.auctionhunter.utils.AccountRole;
 import com.vladnichifor.auctionhunter.utils.AccountStatus;
 import com.vladnichifor.auctionhunter.utils.AccountType;
@@ -13,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -33,14 +38,14 @@ public class AuthenticationService {
                         .accountType(AccountType.NORMAL)
                         .build()
         );
-        userRepository.save(user.getUserEntity());
+        userRepository.save(user.userEntity());
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse login(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
