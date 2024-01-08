@@ -19,7 +19,6 @@ public class Auction {
     private Long id;
     private String title;
     private String description;
-    private User owner;
     private List<Photo> photos;
     private AuctionCategory category;
     private Double reservedPrice;
@@ -31,6 +30,4 @@ public class Auction {
     private LocalTime startingTime;
     private LocalTime endingTime;
     private Integer visits;
-
-    //todo - remove owner from here
 }

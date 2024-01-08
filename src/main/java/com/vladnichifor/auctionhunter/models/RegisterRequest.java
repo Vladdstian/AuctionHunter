@@ -16,9 +16,6 @@ public class RegisterRequest {
     @NotBlank(message = "First name is required")
     private String firstName;
 
-//    @NotBlank(message = "Last name is required")
-//    private String lastName;
-
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
     private String email;
@@ -26,11 +23,6 @@ public class RegisterRequest {
     @NotBlank(message = "Password is required")
     private String password;
 
-//    @NotBlank(message = "Phone number is required")
-//    @Size(min = 10, max = 15, message = "Phone number must be between 10 and 15 characters")
-//    private String phoneNumber;
-
-    //TODO: remove lastname, phonenumber
-    //TODO: add retype password to check if the password is valid
-
+    @NotBlank(message = "Retyping the password is required")
+    private String confirmPassword;
 }

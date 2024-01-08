@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class UserMapper implements Mapper<User, UserEntity> {
 
     private final AddressMapper addressMapper;
+    private final AuctionMapper auctionMapper;
 
     @Override
     public UserEntity toEntity(User dto) {
@@ -27,6 +28,21 @@ public class UserMapper implements Mapper<User, UserEntity> {
                 .accountStatus(dto.getAccountStatus())
                 .accountType(dto.getAccountType())
                 .accountRole(dto.getAccountRole())
+                .createdAuctions(dto
+                        .getCreatedAuctions()
+                        .stream()
+                        .map(auctionMapper::toEntity)
+                        .toList())
+                .participatedAuctions(dto
+                        .getParticipatedAuctions()
+                        .stream()
+                        .map(auctionMapper::toEntity)
+                        .toList())
+                .favouriteAuctions(dto
+                        .getFavouriteAuctions()
+                        .stream()
+                        .map(auctionMapper::toEntity)
+                        .toList())
                 .build();
     }
 
@@ -46,6 +62,21 @@ public class UserMapper implements Mapper<User, UserEntity> {
                 .accountStatus(entity.getAccountStatus())
                 .accountType(entity.getAccountType())
                 .accountRole(entity.getAccountRole())
+                .createdAuctions(entity
+                        .getCreatedAuctions()
+                        .stream()
+                        .map(auctionMapper::toDto)
+                        .toList())
+                .participatedAuctions(entity
+                        .getParticipatedAuctions()
+                        .stream()
+                        .map(auctionMapper::toDto)
+                        .toList())
+                .favouriteAuctions(entity
+                        .getFavouriteAuctions()
+                        .stream()
+                        .map(auctionMapper::toDto)
+                        .toList())
                 .build();
     }
 }

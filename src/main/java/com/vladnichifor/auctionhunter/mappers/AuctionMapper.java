@@ -12,8 +12,6 @@ public class AuctionMapper implements Mapper<Auction, AuctionEntity> {
 
     private final PhotoMapper photoMapper;
     private final AuctionCategoryMapper auctionCategoryMapper;
-    private final UserMapper userMapper;
-
 
     public AuctionEntity toEntity(Auction dto) {
         if (dto == null) {
@@ -23,7 +21,6 @@ public class AuctionMapper implements Mapper<Auction, AuctionEntity> {
         return AuctionEntity.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
-                .ownerEntity(userMapper.toEntity(dto.getOwner()))
                 .photos(dto.getPhotos().stream().map(photoMapper::toEntity).toList())
                 .category(auctionCategoryMapper.toEntity(dto.getCategory()))
                 .reservedPrice(dto.getReservedPrice())
@@ -47,7 +44,6 @@ public class AuctionMapper implements Mapper<Auction, AuctionEntity> {
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .description(entity.getDescription())
-                .owner(userMapper.toDto(entity.getOwnerEntity()))
                 .photos(entity.getPhotos().stream().map(photoMapper::toDto).toList())
                 .category(auctionCategoryMapper.toDto(entity.getCategory()))
                 .reservedPrice(entity.getReservedPrice())

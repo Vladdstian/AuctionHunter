@@ -4,7 +4,6 @@ import com.vladnichifor.auctionhunter.entities.AuctionEntity;
 import com.vladnichifor.auctionhunter.mappers.AuctionCategoryMapper;
 import com.vladnichifor.auctionhunter.mappers.AuctionMapper;
 import com.vladnichifor.auctionhunter.mappers.PhotoMapper;
-import com.vladnichifor.auctionhunter.mappers.UserMapper;
 import com.vladnichifor.auctionhunter.models.Auction;
 import com.vladnichifor.auctionhunter.repositories.AuctionRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,7 +19,6 @@ public class AuctionServiceImpl implements AuctionService {
     private final AuctionRepository auctionRepository;
     private final AuctionMapper auctionMapper;
     private final PhotoMapper photoMapper;
-    private final UserMapper userMapper;
     private final AuctionCategoryMapper auctionCategoryMapper;
 
     @Override
@@ -51,7 +49,6 @@ public class AuctionServiceImpl implements AuctionService {
 
         existingEntity.setTitle(auction.getTitle());
         existingEntity.setDescription(auction.getDescription());
-        existingEntity.setOwnerEntity(userMapper.toEntity(auction.getOwner()));
         existingEntity.setPhotos(auction.getPhotos().stream().map(photoMapper::toEntity).toList());
         existingEntity.setCategory(auctionCategoryMapper.toEntity(auction.getCategory()));
         existingEntity.setReservedPrice(auction.getReservedPrice());

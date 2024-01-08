@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AuctionRepository extends JpaRepository<AuctionEntity, Long> {
-    List<AuctionEntity> findAllByOwnerEntity_Id(Long id);
+
 }

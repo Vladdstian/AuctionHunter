@@ -28,10 +28,10 @@ public class AuctionEntity {
     @Column(name = "description", length = 500)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    @JsonManagedReference
-    private UserEntity ownerEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+//    @JsonManagedReference
+//    private UserEntity ownerEntity;
 
     @OneToMany(targetEntity = PhotoEntity.class, cascade = CascadeType.ALL)
     private List<PhotoEntity> photos;

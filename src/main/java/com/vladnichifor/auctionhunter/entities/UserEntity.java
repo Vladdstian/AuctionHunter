@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity(name = "user")
 @Table(name = "_user")
 @Data
@@ -51,5 +53,23 @@ public class UserEntity {
     @Column(name = "account_status", nullable = false)
     private AccountStatus accountStatus;
 
-    //TODO: add a list of favourite auctions
+    @OneToMany
+    @JoinColumn(name = "creator_id", referencedColumnName = "id")
+    private List<AuctionEntity> createdAuctions;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favourite_auctions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "auction_id")
+    )
+    private List<AuctionEntity> favouriteAuctions;
+
+    @ManyToMany
+    @JoinTable(
+            name = "participated_auctions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "auction_id")
+    )
+    private List<AuctionEntity> participatedAuctions;
 }

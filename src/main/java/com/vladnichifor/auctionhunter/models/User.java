@@ -1,8 +1,11 @@
 package com.vladnichifor.auctionhunter.models;
 
+import com.vladnichifor.auctionhunter.entities.AuctionEntity;
 import com.vladnichifor.auctionhunter.utils.AccountRole;
 import com.vladnichifor.auctionhunter.utils.AccountStatus;
 import com.vladnichifor.auctionhunter.utils.AccountType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -36,4 +41,8 @@ public class User {
     private AccountType accountType;
     private AccountRole accountRole;
     private AccountStatus accountStatus;
+
+    private List<Auction> createdAuctions;
+    private List<Auction> favouriteAuctions;
+    private List<Auction> participatedAuctions;
 }

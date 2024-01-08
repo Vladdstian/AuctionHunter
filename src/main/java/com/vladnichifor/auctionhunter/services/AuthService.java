@@ -1,6 +1,7 @@
 package com.vladnichifor.auctionhunter.services;
 
 import com.vladnichifor.auctionhunter.entities.UserEntity;
+import com.vladnichifor.auctionhunter.exceptions.PasswordMismatchException;
 import com.vladnichifor.auctionhunter.models.LoginRequest;
 import com.vladnichifor.auctionhunter.models.AuthenticationResponse;
 import com.vladnichifor.auctionhunter.models.RegisterRequest;
@@ -26,13 +27,16 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            throw new PasswordMismatchException("Passwords do not match.");
+        }
+
         var user = new AuthUser(
                 UserEntity.builder()
                         .firstName(request.getFirstName())
-//                        .lastName(request.getLastName())
                         .email(request.getEmail())
                         .password(passwordEncoder.encode(request.getPassword()))
-//                        .phoneNumber(request.getPhoneNumber())
                         .accountRole(AccountRole.USER)
                         .accountStatus(AccountStatus.ACTIVE)
                         .accountType(AccountType.NORMAL)
