@@ -29,10 +29,10 @@ public class AuthService {
         var user = new AuthUser(
                 UserEntity.builder()
                         .firstName(request.getFirstName())
-                        .lastName(request.getLastName())
+//                        .lastName(request.getLastName())
                         .email(request.getEmail())
                         .password(passwordEncoder.encode(request.getPassword()))
-                        .phoneNumber(request.getPhoneNumber())
+//                        .phoneNumber(request.getPhoneNumber())
                         .accountRole(AccountRole.USER)
                         .accountStatus(AccountStatus.ACTIVE)
                         .accountType(AccountType.NORMAL)

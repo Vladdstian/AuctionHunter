@@ -31,4 +31,6 @@ public class Auction {
     private LocalTime startingTime;
     private LocalTime endingTime;
     private Integer visits;
+
+    //todo - remove owner from here
 }

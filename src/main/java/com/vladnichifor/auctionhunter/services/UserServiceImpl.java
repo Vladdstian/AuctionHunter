@@ -120,4 +120,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+
+    //todo -a method to check if the user has filled all details and to change it's Role from User to validated user
+
 }

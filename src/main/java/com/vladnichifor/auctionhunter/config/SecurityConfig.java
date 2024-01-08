@@ -12,10 +12,16 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 import static com.vladnichifor.auctionhunter.utils.AccountRole.ADMIN;
 import static com.vladnichifor.auctionhunter.utils.AccountRole.USER;
+import static java.util.Arrays.asList;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -29,7 +35,16 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(withDefaults())
+                .cors(cors -> {
+                    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowCredentials(true);
+                    config.setAllowedOrigins(List.of("http://localhost:4200"));
+                    config.setAllowedMethods(asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    config.setAllowedHeaders(asList("Authorization", "Content-Type", "Accept"));
+                    source.registerCorsConfiguration("/**", config);
+                    cors.configurationSource(source);
+                })
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
