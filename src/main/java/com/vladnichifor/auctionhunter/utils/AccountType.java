@@ -5,5 +5,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum AccountType {
     NORMAL,
+    VALIDATED,
     PREMIUM
 }
